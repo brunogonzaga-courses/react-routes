@@ -6,22 +6,22 @@ import JavaScript from './courses/JavaScript';
 import { NavLink, Route, Redirect } from 'react-router-dom';
 
 
-const Courses = () => (
+const Courses = ({match}) => (
   <div className="main-content courses">
     <div className="course-header group">
       <h2>Courses</h2> 
       <ul className="course-nav">
-        <li><NavLink to='/courses/html'>HTML</NavLink></li>
-        <li><NavLink to='/courses/css'>CSS</NavLink></li>
-        <li><NavLink to='/courses/javascript'>JavaScript</NavLink></li>
+        <li><NavLink to={`${match}/html`} >HTML</NavLink></li>
+        <li><NavLink to={`${match}/css`} >CSS</NavLink></li>
+        <li><NavLink to={`${match}/javascript`} >JavaScript</NavLink></li>
       </ul>
     </div>
     
     {/* Write routes here... */}
-    <Route exact path="/courses" render={ () => <Redirect to="/courses/html" /> } />
-    <Route path="/courses/html" component={HTML} />
-    <Route path="/courses/css" component={CSS} />
-    <Route path="/courses/javascript" component={JavaScript} />
+    <Route exact path={match.path} render={ () => <Redirect to={`${match}/html`} /> } />
+    <Route path={`${match}/html`} component={HTML} />
+    <Route path={`${match}/css`} component={CSS} />
+    <Route path={`${match}/javascript`} component={JavaScript} />
   </div>
 );
 
